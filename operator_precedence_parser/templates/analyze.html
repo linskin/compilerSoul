@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis Result</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: #666;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Analysis Result</h1>
+    <div class="card">
+        <h2>Analyze Result: {{ 'Accepted' if analyze_result else 'Rejected' }}</h2>
+        <p>Steps:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Step</th>
+                    <th>Analysis Stack</th>
+                    <th>Current Stack</th>
+                    <th>Relation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for step in analysis_steps %}
+                    <tr>
+                        <td>{{ step.step }}</td>
+                        <td>{{ step.analysis_stack }}</td>
+                        <td>{{ step.current_stack }}</td>
+                        <td>{{ step.relation }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="card">
+        <h2>Analyze Return Node:</h2>
+        <img src="data:image/png;base64,{{ parse_tree_base64 }}" alt="Parse Tree">
+    </div>
+    <div class="card">
+        <a href="/">Back to Home</a>
+    </div>
+</body>
+</html>
